@@ -10,8 +10,15 @@ function fizz (number) {
   }
 };
 
+// Write fizzBuzz here once fizz is finished.
 function fizzBuzz (start, end) {
-  // Write fizzBuzz here once fizz is finished.
+  var results = [];
+  for (var count = start; count <= end; count++) {
+    results.push(fizz(count));
+  }
+  console.log(results);
 };
+
+fizzBuzz(1,100);
 
 export { fizz };
