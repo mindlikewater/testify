@@ -1,5 +1,5 @@
-function fizz () {
-  // TODO
+function fizz (number) {
+  return number; 
 };
 
 function fizzBuzz (start, end) {
