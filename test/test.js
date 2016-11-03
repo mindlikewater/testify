@@ -21,7 +21,7 @@ describe('Fizzbuzz returns values for different kinds of numbers', function () {
   });
 
   it("should return Buzz for numbers divisible by 5", function () {
-    let result = buzz(5);
+    let result = fizz(5);
     assert.equal(result,"Buzz");
   });
 
