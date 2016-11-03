@@ -38,8 +38,10 @@ class GildedRose {
       if (this.name != 'Aged Brie') {
         if (this.name != 'Backstage passes to a TAFKAL80ETC concert') {
           if (this.quality > 0) {
-            if (this.name != 'Sulfuras, Hand of Ragnaros') {
+            if (this.name != 'Sulfuras, Hand of Ragnaros' && !this.name.includes('Conjured')) {
               this.quality = this.quality - 1;
+            } else if (this.name != 'Sulfuras, Hand of Ragnaros' && this.name.includes('Conjured')) {
+              this.quality = this.quality - 2;
             }
           }
         } else {
