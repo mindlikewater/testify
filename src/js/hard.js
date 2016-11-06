@@ -1,11 +1,13 @@
 function getBrie (item) {
   item.sellIn--;
   if (item.sellIn > 0) {
-    return item.quality++;
+    item.quality++;
   }
   else {
-    return item.quality+= 2;
+   item.quality+= 2;
   }
+  qcLimits(item);
+  return item;
 };
 
 function getBackstage(item) {
@@ -22,6 +24,25 @@ function getBackstage(item) {
   else if (item.sellIn < 10) {
     item.quality += 2;
   }
+  return item;
+};
+
+function getConjured(item) {
+
+};
+
+function getNormal(item) {
+  item.sellIn--;
+  //degrades twice as fast after sellIn date has passed
+  if (item.sellIn < 0) {
+    item.quality -= 2;
+  }
+  // normal case
+  else {
+   item.quality--;
+  }
+  qcLimits(item);
+  return item;
 };
 
 function qcLimits(item) {
@@ -47,15 +68,17 @@ class GildedRose {
     }
     else if (this.name.includes('Brie')) {
       getBrie(this);
-      qcLimits(this);
     }
     else if (this.name.includes('Backstage')) {
       getBackstage(this);
-      qcLimits(this);
+      qcLimits(item);
     }
     else if (this.name.includes('Conjured')) {
       getConjured(this);
       qcLimits(this);
+    }
+    else {
+      getNormal(this);
     }
 
 
