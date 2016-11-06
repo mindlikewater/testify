@@ -1,26 +1,36 @@
-// determines if quality is within valid range of 0 to 50
-function validQuality (quality) {
-  return quality >= 0 && quality <= 50;
-};
-
-function getBrie (myObj) {
-  myObj.sellIn--;
-  if (myObj.sellIn > 0) {
-    return myObj.quality++;
+function getBrie (item) {
+  item.sellIn--;
+  if (item.sellIn > 0) {
+    return item.quality++;
   }
   else {
-    return myObj.quality+= 2;
+    return item.quality+= 2;
   }
-}
+};
 
-function CheckLimits(myObj) {
-  if (myObj.quality >50) {
-    myObj.quality = 50;
+function qcLimits(item) {
+  if (item.quality > 50) {
+    item.quality = 50;
   }
-  else if (myObj.quality < 0) {
-    myObj.quality = 0;
+  else if (item.quality < 0) {
+    item.quality = 0;
   }
-}
+};
+
+function getBackstage(item) {
+  if (this.sellIn >= 10) {
+    this.quality++;
+  }
+  else if (this.sellIn < 0) {
+    this.quality = 0;
+  }
+  else if (this.sellIn < 5) {
+    this.quality += 3;
+  }
+  else if (this.sellIn < 10) {
+    this.quality += 2;
+  }
+};
 
 class GildedRose {
   constructor (sellIn, quality, name) {
@@ -36,8 +46,15 @@ class GildedRose {
     }
     else if (this.name.includes('Brie')) {
       getBrie(this);
-      CheckLimits(this);
+      qcLimits(this);
     }
+    else if (this.name.includes('Backstage')) {
+      getBackstage(this);
+      qcLimits(this);
+    }
+
+
+
   }
 }
 
