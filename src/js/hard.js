@@ -29,7 +29,15 @@ function getBackstage(item) {
 };
 
 function getConjured(item) {
-
+  item.sellIn--;
+  if (item.sellIn <= 0) {
+    item.quality -= 4;
+  }
+  else {
+    item.quality -= 2;
+  }
+  qcLimits(item);
+  return item;
 };
 
 function getNormal(item) {
@@ -80,8 +88,6 @@ class GildedRose {
     else {
       getNormal(this);
     }
-
-
   }
 }
 
