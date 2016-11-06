@@ -3,6 +3,25 @@ function validQuality (quality) {
   return quality >= 0 && quality <= 50;
 };
 
+function getBrie (myObj) {
+  myObj.sellIn--;
+  if (myObj.sellIn > 0) {
+    return myObj.quality++;
+  }
+  else {
+    return myObj.quality+= 2;
+  }
+}
+
+function CheckLimits(myObj) {
+  if (myObj.quality >50) {
+    myObj.quality = 50;
+  }
+  else if (myObj.quality < 0) {
+    myObj.quality = 0;
+  }
+}
+
 class GildedRose {
   constructor (sellIn, quality, name) {
     this.name = name;
@@ -11,9 +30,13 @@ class GildedRose {
   }
 
   tick () {
-
+//Legendary item Sulfuras never changes in quality
     if (this.name.includes('Sulfuras')) {
       this.quality = 80;
+    }
+    else if (this.name.includes('Brie')) {
+      getBrie(this);
+      CheckLimits(this);
     }
   }
 }
