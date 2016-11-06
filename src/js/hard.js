@@ -24,6 +24,7 @@ function getBackstage(item) {
   else if (item.sellIn < 10) {
     item.quality += 2;
   }
+  qcLimits(item);
   return item;
 };
 
@@ -46,12 +47,13 @@ function getNormal(item) {
 };
 
 function qcLimits(item) {
-  if (item.quality > 50) {
+  if (item.quality >= 50) {
     item.quality = 50;
   }
-  else if (item.quality < 0) {
+  else if (item.quality <= 0) {
     item.quality = 0;
   }
+  return item;
 };
 
 class GildedRose {
@@ -71,11 +73,9 @@ class GildedRose {
     }
     else if (this.name.includes('Backstage')) {
       getBackstage(this);
-      qcLimits(item);
     }
     else if (this.name.includes('Conjured')) {
       getConjured(this);
-      qcLimits(this);
     }
     else {
       getNormal(this);
