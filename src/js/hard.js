@@ -8,27 +8,28 @@ function getBrie (item) {
   }
 };
 
+function getBackstage(item) {
+  item.sellIn--
+  if (item.sellIn >= 10) {
+    item.quality++;
+  }
+  else if (item.sellIn < 0) {
+    item.quality = 0;
+  }
+  else if (item.sellIn < 5) {
+    item.quality += 3;
+  }
+  else if (item.sellIn < 10) {
+    item.quality += 2;
+  }
+};
+
 function qcLimits(item) {
   if (item.quality > 50) {
     item.quality = 50;
   }
   else if (item.quality < 0) {
     item.quality = 0;
-  }
-};
-
-function getBackstage(item) {
-  if (this.sellIn >= 10) {
-    this.quality++;
-  }
-  else if (this.sellIn < 0) {
-    this.quality = 0;
-  }
-  else if (this.sellIn < 5) {
-    this.quality += 3;
-  }
-  else if (this.sellIn < 10) {
-    this.quality += 2;
   }
 };
 
@@ -52,7 +53,10 @@ class GildedRose {
       getBackstage(this);
       qcLimits(this);
     }
-
+    else if (this.name.includes('Conjured')) {
+      getConjured(this);
+      qcLimits(this);
+    }
 
 
   }
